@@ -1,10 +1,4 @@
 class Solution:
-    def unionFind(self, arr, ind):
-        if arr[ind] == ind:
-            return ind
-        arr[ind] = self.unionFind(arr,arr[ind])
-        return arr[ind]
-
     def possibleBipartition(self, n: int, dislikes: List[List[int]]) -> bool:
 
         adj = defaultdict(list)
