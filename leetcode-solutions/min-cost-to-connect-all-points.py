@@ -7,14 +7,12 @@ class UnionFind:
             self.parent[a] = self.unionFind(self.parent[a])
         return self.parent[a]
     
-    def union(self, a, b, distance):
+    def union(self, a, b):
         a = self.unionFind(a)
         b = self.unionFind(b)
-        if a == b: return 0
         if b < a:
             a,b = b,a
         self.parent[b] = a
-        return distance
         
 class Solution:
     def minCostConnectPoints(self, points: List[List[int]]) -> int:
@@ -30,7 +28,9 @@ class Solution:
         total = 0   
         edges.sort()
         for distance,a,b in edges:
-            total += Union.union(a,b,distance)
+            if Union.unionFind(a) != Union.unionFind(b):
+                total += distance
+                Union.union(a,b)
 
         return total
 
