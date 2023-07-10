@@ -9,7 +9,7 @@ class UnionFind:
 
     def unionFind(self, row,col):
         if (row,col) != self.parent[row][col]:
-            self.parent[row][col] = self.unionFind(self.parent[row][col][0],self.parent[row][col][1])
+            self.parent[row][col] = self.unionFind(*self.parent[row][col])
         return self.parent[row][col]
 
     def union(self, row1,col1, row2,col2):
