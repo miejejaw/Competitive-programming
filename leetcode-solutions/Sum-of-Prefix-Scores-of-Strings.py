@@ -3,7 +3,7 @@ class TrieNode:
         self.children = {}
         self.count = 0
         self.is_end_of_word = False
-Sum-of-Prefix-Scores-of-Strings.py
+
 class Trie:
     def __init__(self):
         self.root = TrieNode()
