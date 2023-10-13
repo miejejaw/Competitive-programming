@@ -1,30 +1,22 @@
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
-        
-        w1 = Counter(s1)
-        temp = defaultdict(int)
-        beg = 0
+        hold = Counter(s1)
         length = len(s2)
-
+        seen = defaultdict(int)
+        beg = 0
+        
         for end in range(length):
-            if s2[end] not in w1:
-                while beg < end:
-                    temp[s2[beg]] -= 1
-                    if temp[s2[beg]] == 0:
-                        temp.pop(s2[beg])
-                    
-                    if temp == w1: return True
+            if s2[end] not in hold:
+                seen.clear()
+                beg = end+1
+            else: 
+                seen[s2[end]] += 1
+                while seen[s2[end]] > hold[s2[end]]:
+                    seen[s2[beg]] -= 1
+                    if seen[s2[beg]] == 0:
+                        seen.pop(s2[beg])
                     beg += 1
-                beg += 1
-            else:
-                temp[s2[end]] += 1
-                while beg < end and temp[s2[end]]>w1[s2[end]]:
-                    temp[s2[beg]] -= 1
-                    if temp[s2[beg]] == 0:
-                        temp.pop(s2[beg])
-                    
-                    beg += 1
-
-            if temp == w1: return True
-            
+                
+            if hold == seen:
+                return True
         return False
