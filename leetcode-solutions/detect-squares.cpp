@@ -1,30 +1,29 @@
 class DetectSquares {
 public:
-    unordered_map<int,unordered_set<int>> vertical;
-    vector<vector<int>> grid;
+    unordered_map<int,unordered_map<int,int>> points;
 
     DetectSquares() {
-        grid.resize(1001, vector<int>(1001, 0));
+
     }
     
     void add(vector<int> point) {
-        vertical[point[1]].insert(point[0]);
-        grid[point[0]][point[1]] += 1;
+        points[point[1]][point[0]] += 1;
     }
     
     int count(vector<int> point) {
         int count = 0;
-        int a=point[0],b=point[1];
+        int x=point[0],y=point[1];
 
-        for(int x : vertical[b]){
-            if(x == a) continue;
-            int d = abs(a-x);
-            if(b+d < 1001){
-                count += grid[x][b] * grid[a][b+d] * grid[x][b+d];
+        for(auto& p : points[y]){
+            if(x == p.first) continue;
+
+            int d = abs(x-p.first);
+            if(y+d < 1001){
+                count += p.second * points[y+d][x] * points[y+d][p.first];
             }
 
-            if(b-d >= 0){
-                count += grid[x][b] * grid[a][b-d] * grid[x][b-d];
+            if(y-d >= 0){
+                count += p.second * points[y-d][x] * points[y-d][p.first];
             }
         }
 
