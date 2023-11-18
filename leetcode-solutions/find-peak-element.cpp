@@ -3,7 +3,7 @@ public:
     int findPeakElement(vector<int>& nums) {
 
         int left = 0;
-        int right = nums.size() - 2;
+        int right = nums.size() - 1;
 
         while (left < right) {
             int mid = left + (right - left) / 2;
@@ -14,9 +14,6 @@ public:
                 right = mid; 
             }
         }
-
-        if(nums.size() != 1 && nums[left] < nums[left+1])
-            left++;
         
         return left;
     }
