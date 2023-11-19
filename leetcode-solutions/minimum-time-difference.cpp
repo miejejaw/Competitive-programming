@@ -1,15 +1,9 @@
 class Solution {
 public:
     int toMinute(const std::string& time) {
-        int minutes = 0;
-        std::stringstream ss(time);
-        std::string token;
-
-        getline(ss, token, ':');
-        minutes += stoi(token) * 60;
-
-        getline(ss, token, ':');
-        minutes += stoi(token);
+        int hours = stoi(time.substr(0,2));
+        int mins = stoi(time.substr(3,2));
+        int minutes = hours*60 + mins;
 
         return minutes;
     }
