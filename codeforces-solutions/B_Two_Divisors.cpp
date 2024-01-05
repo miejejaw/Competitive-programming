@@ -6,15 +6,16 @@ typedef long long ll;
 
 void solve()
 {
-    ll A, B;
+    ll A, B, ans;
 	cin >> A >> B;
+    
 	if(B % A == 0){
-		ll ans = B * (B / A);
-		cout << ans << '\n';
+		ans = B * (B / A);
 	} else {
-		ll ans = A / __gcd(A, B) *B;
-		cout << ans << '\n';
+		ans = A / __gcd(A, B) *B;
 	}
+
+	cout << ans << '\n';
 }
 
 int main()
