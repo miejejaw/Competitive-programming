@@ -2,5 +2,5 @@ templet.cpp
 templet.py
 /.cph
 /.vscode
-*.py
-*.cpp
+.py
+.cpp
