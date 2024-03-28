@@ -41,10 +41,9 @@ void solve()
 
     total += _max * (pows[k] - 1);
 
-    
-    // if(total < 0){
-    //     total = (-total/rm)*rm + total + rm;
-    // }
+    if(total < 0){
+        total = (-total/rm)*rm + total + rm;
+    }
     cout << total  << endl;
 }
 
